@@ -1,9 +1,9 @@
 package cn.edu.zhku.jsj.Model;
 
-public class address {
+public class Address {
 	private int id;
-	private int user_id;
-	private int receivertel;
+
+	private String receivertel;
 	private String receiver;
 	private String location;
 	public int getId() {
@@ -12,16 +12,10 @@ public class address {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUser_id() {
-		return user_id;
-	}
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
-	}
-	public int getReceivertel() {
+	public String getReceivertel() {
 		return receivertel;
 	}
-	public void setReceivertel(int receivertel) {
+	public void setReceivertel(String receivertel) {
 		this.receivertel = receivertel;
 	}
 	public String getReceiver() {
@@ -36,5 +30,10 @@ public class address {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-
+	@Override
+	public String toString() {
+		return "Address [id=" + id + ", receivertel=" + receivertel + ", receiver=" + receiver + ", location="
+				+ location + "]";
+	}
+	
 }

@@ -1,4 +1,5 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -8,20 +9,38 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
   <head>
     <base href="<%=basePath%>">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>My JSP 'CustomerManager.jsp' starting page</title>
+    
+    <title>My JSP 'pager.jsp' starting page</title>
+    
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	
   </head>
   
   <body>
-    <a href="CustomerManagerCtrl?method=list"></a>
+    <div>
+    	<form action="">
+		   	<ul>
+		   		<li><a href="#">《上一页</a></li>
+		   		<c:forEach items="">
+		   			<li></li>
+		   		</c:forEach>
+		   		<li><a href="#">下一页 》</a></li>
+		   		<li>
+		   			<span>共页</span>
+		   			<span>到第<input type="text" size="2">页</span>
+		   		</li>
+		   		<li><input type="submit" value="确定"></li>
+		   		
+		   	</ul>
+    	
+    	</form>
+    </div>
   </body>
 </html>

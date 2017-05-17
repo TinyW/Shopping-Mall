@@ -1,19 +1,28 @@
 package cn.edu.zhku.jsj.Model;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class User {
 	private int id;
 	private String username;
 	private String nickname;
 	private String password;
-	private Long tel;
+	private String tel;
 	private String sex;
 	private int type;
 	private Date birth;
 	private Date register;
+	private List<Address>addresses=new ArrayList<Address>();
 	public int getId() {
 		return id;
+	}
+	public List<Address> getAddresses() {
+		return addresses;
+	}
+	public void setAddresses(List<Address> addresses) {
+		this.addresses = addresses;
 	}
 	public void setId(int id) {
 		this.id = id;
@@ -36,10 +45,10 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public Long getTel() {
+	public String getTel() {
 		return tel;
 	}
-	public void setTel(Long tel) {
+	public void setTel(String tel) {
 		this.tel = tel;
 	}
 	public String getSex() {
@@ -66,5 +75,27 @@ public class User {
 	public void setRegister(Date register) {
 		this.register = register;
 	}
+	public User(String username, String nickname, String password, String tel, String sex, int type, Date birth,
+			Date register) {
+		super();
+		this.username = username;
+		this.nickname = nickname;
+		this.password = password;
+		this.tel = tel;
+		this.sex = sex;
+		this.type = type;
+		this.birth = birth;
+		this.register = register;
+	}
+	public User() {
+		super();
+	}
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", nickname=" + nickname + ", password=" + password
+				+ ", tel=" + tel + ", sex=" + sex + ", type=" + type + ", birth=" + birth + ", register=" + register
+				+ ", addresses=" + addresses + "]";
+	}
+	
 	
 }
