@@ -113,39 +113,5 @@ public class UserDao {
 		count =dao.count(User.class);
 		return count;
 	}
-	public static void main(String[] args) {
-		
-		
-		UserDao dao=new UserDao();
-		User user=dao.load("id",1);
-		System.out.println(user.toString());
-		for(Address a:user.getAddresses())
-		{
-			System.out.println(a.toString());
-		}
 
-//		User user=new User("���","likui","123","1234-4567788","��",0,
-//		new java.sql.Date(19960606),new java.sql.Date(new java.util.Date().getTime()));
-//		user.setId(3);
-//		boolean flag=dao.update(user);
-//		System.out.println(flag);
-//		
-//		User u=new User("hello","world","345","123457677","f",1,new java.sql.Date(0),new java.sql.Date(new java.util.Date().getTime()));
-//		boolean flag=dao.save(u);
-//		System.out.println(flag);
-//		Map<String,Object>params=new HashMap();
-//		params.put("username","宋江");
-//		String order="nickname";
-//		String choose="desc";
-//		Pager pager=new Pager();
-//		pager.setCurrentPage(1);
-//		pager.setEachRecord(2);
-//		List<User> list=dao.list(params,pager,order, choose);
-//		for(User u:list)
-//		{
-//			System.out.println(u.toString());
-//		}
-//		User u=dao.load(1);
-//		System.out.println(u.toString());
-	}
 }

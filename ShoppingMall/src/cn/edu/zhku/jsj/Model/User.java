@@ -77,7 +77,6 @@ public class User {
 	}
 	public User(String username, String nickname, String password, String tel, String sex, int type, Date birth,
 			Date register) {
-		super();
 		this.username = username;
 		this.nickname = nickname;
 		this.password = password;
@@ -88,7 +87,7 @@ public class User {
 		this.register = register;
 	}
 	public User() {
-		super();
+		
 	}
 	@Override
 	public String toString() {

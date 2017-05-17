@@ -1,5 +1,7 @@
 package cn.edu.zhku.jsj.Model;
-
+/*
+ * 分页的设置
+ */
 public class Pager {
 	private int totalPage;//总页数=总记录数/每页记录数
 	private int totalRecord;//总记录数
@@ -35,6 +37,6 @@ public class Pager {
 		current=eachRecord*(currentPage-1);
 		return current;
 	}
-
+	
 	
 }

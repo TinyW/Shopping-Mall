@@ -11,6 +11,9 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+/*
+ * 编码格式过滤
+ */
 @WebFilter(filterName="CharacterFilter",urlPatterns="/*")
 public class CharacterFilter implements Filter {
 

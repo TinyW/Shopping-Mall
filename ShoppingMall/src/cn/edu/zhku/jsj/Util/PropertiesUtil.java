@@ -17,8 +17,5 @@ public class PropertiesUtil {
 		}
 		return jdbcProp;
 	}
-//	public static void main(String[] args) {
-//		String driver=PropertiesUtil.getProp().getProperty("driver");
-//		System.out.println(driver);
-//	}
+
 }

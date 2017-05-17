@@ -178,42 +178,6 @@ public class BaseUtil<T> {
 		}
 		return count;
 	}
-//	
-	public static void main(String[] args) throws SQLException {
-//		User user=new User("����","likui","123","1234-4567788","Ů",0,
-//				new java.sql.Date(19960606),new java.sql.Date(new java.util.Date().getTime()));
-//		String sql="insert into User(username,nickname,password,tel) value(?,?,?,?)";
-//		Object params[]=new Object[4];
-//		params[0]=user.getUsername();
-//		params[1]=user.getNickname();
-//		params[2]=user.getPassword();
-//		params[3]=user.getTel();
-//		boolean result=BaseDao.update(sql, params);
-//		System.out.println(result);
-//		DBUtil.closeAll(ct, ps, rs);
-//		String sql2="select id, username,nickname,password,tel,sex,type,birth,register from user where id=?";
-//		Object params2[]={2};
-//		BaseDao dao=new BaseDao();
-//		User u=(User)dao.Query(User.class,sql2, params2);
-//		System.out.println(u.getNickname());
-		List<User>list=new ArrayList<User>();
-		BaseUtil dao=new BaseUtil();
-		dao.count(User.class);
-//		String sql="select * from user  where 1=1";
-//		sql=sql+" order by ? ? limit ?,?";
-//		System.out.println(sql);
-//		String order="id";
-//		String choose="desc";
-//		Pager pager=new Pager();
-//		pager.setCurrentPage(2);;
-//		pager.setEachRecord(5);
-//		Object []params=new Object[0];
-//		list=dao.QueryList(User.class, sql, params, pager, order, choose);
-//		for(User u:list)
-//		{
-//			System.out.println(u.toString());
-//		}
-//		
-	}
+
 	
 }

@@ -46,9 +46,5 @@ public class DBUtil {
 				e.printStackTrace();
 			}
 	}
-//	public static void main(String[] args) throws SQLException {
-//		Connection ct=DBUtil.getConnection();
-//		System.out.println(ct.hashCode());
-//		ct.close();
-//	}
+
 }

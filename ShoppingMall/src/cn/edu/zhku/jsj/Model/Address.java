@@ -35,5 +35,14 @@ public class Address {
 		return "Address [id=" + id + ", receivertel=" + receivertel + ", receiver=" + receiver + ", location="
 				+ location + "]";
 	}
+	public Address(String receivertel, String receiver, String location) {
+		super();
+		this.receivertel = receivertel;
+		this.receiver = receiver;
+		this.location = location;
+	}
+	public Address() {
+		super();
+	}
 	
 }
