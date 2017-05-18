@@ -156,16 +156,17 @@ public class BaseUtil<T> {
 		
 		return flag;
 	}
-	public int count(Class<T>clz)
+	public int count(Class<T>clz,int type)
 	{
 		int count =0;
 		ct=DBUtil.getConnection();
 		try {
 			String name=clz.getName().substring(clz.getName().lastIndexOf(".")+1);
 			System.out.println(name);
-			String sql="select count(*) from "+name;
+			String sql="select count(*) from "+name+" where type=?";
 			System.out.println(sql);
 			ps=ct.prepareStatement(sql);
+			ps.setInt(1,type);
 			rs=ps.executeQuery();
 			rs.next();
 			count=rs.getInt(1);

@@ -22,7 +22,7 @@ public class UserDao {
 		User user=new User();
 		BaseUtil<User> dao=new BaseUtil<User>();
 		String sql="select * from user where " +key+"=?";
-		System.out.println("load:"+sql);
+
 		Object params[]={value};
 		user=(User) dao.QueryOne(User.class, sql, params);
 		String sql1="select * from address where user_id=?";
@@ -41,9 +41,7 @@ public class UserDao {
 	{
 		if(pager.getTotalRecord()==0)
 		{
-			
 			pager.setTotalRecord(countUser());
-			System.out.println("查询数据库："+pager.getTotalRecord());
 		}
 		
 		List<User> list=new ArrayList<User>();
@@ -53,7 +51,6 @@ public class UserDao {
 			sql=sql+" and "+key+"=?";
 		sql=sql+" order by ? ? limit ?,?";
 		Object []params1=params.values().toArray();
-		System.out.println("list:"+sql);
 		list=dao.QueryList(User.class, sql,params1[0],order,choose,pager.getCurrent(),pager.getEachRecord());
 		return list;
 	}
@@ -110,7 +107,7 @@ public class UserDao {
 	{
 		int count =0;
 		BaseUtil dao=new BaseUtil();
-		count =dao.count(User.class);
+		count =dao.count(User.class,0);
 		return count;
 	}
 

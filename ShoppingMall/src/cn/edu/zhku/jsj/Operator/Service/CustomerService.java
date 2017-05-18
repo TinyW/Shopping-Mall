@@ -40,4 +40,10 @@ public class CustomerService {
 		user=dao.load("id", id);
 		return user;
 	}
+	public boolean delete(int id)
+	{
+		UserDao dao=new UserDao();
+		boolean flag=dao.delete(id);
+		return flag;
+	}
 }

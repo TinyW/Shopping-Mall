@@ -33,6 +33,8 @@ public class CustomerManagerCtrl extends HttpServlet {
 			load(request,response);
 		else if("get".equals(method))
 			get(request,response);
+		else if("delete".equals(method))
+			delete(request,response);
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -61,11 +63,9 @@ public class CustomerManagerCtrl extends HttpServlet {
 		
 		pager.setCurrentPage(currentPage);
 		pager.setEachRecord(eachRecord);
-		
-		
+
 		List<User> list=service.list(params, pager, order, choose);
-		for(User u:list)
-			System.out.println(u.toString());
+
 		
 		JSONObject resultJson = new JSONObject();// 创建最后结果的json
         JSONArray jsonArray = new JSONArray();// json数组
@@ -126,5 +126,15 @@ public class CustomerManagerCtrl extends HttpServlet {
 		request.setAttribute("user", user);
 		request.getRequestDispatcher("Operator/Manager/SingleCustomer.jsp").forward(request,response);
 	}
-
+	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		int id=Integer.parseInt(request.getParameter("id"));
+		CustomerService service=new CustomerService();
+		boolean flag=service.delete(id);
+		JSONObject obj=new JSONObject();
+		obj.put("flag",flag);
+		PrintWriter out=response.getWriter();
+		out.println(obj);
+        out.flush();
+        out.close();
+	}
 }
