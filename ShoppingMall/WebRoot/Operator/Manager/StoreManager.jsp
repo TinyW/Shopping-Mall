@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'CustomerManager.jsp' starting page</title>
+    <title>My JSP 'StoreManager.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 
 	<script type="text/javascript" src="js/jquery-1.11.1.js"></script> 
-	<script type="text/javascript" src="js/customer.js"></script>
+	<script type="text/javascript" src="js/store.js"></script>
   </head>
   
   <body>
@@ -52,7 +52,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   		</li>
 		   		<li><input type="button" value="确定" onclick="change(),listInfo()"></li>
 		   	</ul>
-    	</form>
+    </form>
   	
   </body>
 </html>

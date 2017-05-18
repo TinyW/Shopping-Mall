@@ -21,9 +21,9 @@ import net.sf.json.JSONObject;
 
 
 
-@WebServlet(name="CustomerManagerCtrl",urlPatterns="/CustomerManagerCtrl")
+@WebServlet(name="StoreManagerCtrl",urlPatterns="/StoreManagerCtrl")
 @SuppressWarnings("serial")
-public class CustomerManagerCtrl extends HttpServlet {
+public class StoreManagerCtrl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String method=request.getParameter("method");
@@ -55,12 +55,12 @@ public class CustomerManagerCtrl extends HttpServlet {
 		if(totalRecord!=0)
 			//totalPage不为0则存进pager
 			pager.setTotalRecord(totalRecord);
-		//查询用户权限为0的顾客数量
-		else pager.setTotalRecord(service.countCustomerOrStore(0));
+		//获取权限为1即店铺的数量
+		else pager.setTotalRecord(service.countCustomerOrStore(1));
 
 		//参数设置
 		Map<String,Object>params=new HashMap<String,Object>();
-		params.put("type",0);//用户权限0
+		params.put("type",1);//店铺权限1
 		
 		pager.setCurrentPage(currentPage);
 		pager.setEachRecord(eachRecord);
@@ -95,15 +95,14 @@ public class CustomerManagerCtrl extends HttpServlet {
 	}
 	/*
 	 * 该方法根据提交的搜索条件查询用户
-	 * 搜索条件只限顾客用户名
+	 * 搜索条件只限店铺用户名
 	 */
-	//TODO:模糊查询问题
 	public void load(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		
 		String username=new String(request.getParameter("username").getBytes("ISO-8859-1"),"utf-8");
 		UserService service=new UserService();
-		//顾客用户名和权限0
-		User u=service.load(username,0);
+		//店铺用户名和权限1
+		User u=service.load(username,1);
 
 		JSONObject obj=new JSONObject();
 
@@ -124,7 +123,7 @@ public class CustomerManagerCtrl extends HttpServlet {
         out.flush();
         out.close();
 	}
-	//查看具体用户信息，相应的地址也会被获取
+	//查看具体店铺
 	public void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		int id=Integer.parseInt(request.getParameter("id"));
 		UserService service=new UserService();
@@ -132,7 +131,7 @@ public class CustomerManagerCtrl extends HttpServlet {
 		request.setAttribute("user", user);
 		request.getRequestDispatcher("Operator/Manager/SingleUser.jsp").forward(request,response);
 	}
-	//删除具体用户，相应的地址也会被删除
+	//删除具体店铺
 	public void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		int id=Integer.parseInt(request.getParameter("id"));
 		UserService service=new UserService();

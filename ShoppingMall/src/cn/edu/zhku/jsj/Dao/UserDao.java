@@ -17,17 +17,18 @@ public class UserDao {
 	 * 成功返回User,失败返回null
 	 */
 
-	public User load(String key,Object value)
+	public User load(Map<String,Object> params)
 	{
 		User user=new User();
-		BaseUtil<User> dao=new BaseUtil<User>();
-		String sql="select * from user where " +key+"=?";
-
-		Object params[]={value};
-		user=(User) dao.QueryOne(User.class, sql, params);
+		BaseUtil<User> util=new BaseUtil<User>();
+		String sql="select * from user where 1=1";
+		for(String key:params.keySet())
+			sql=sql+" and "+key+"=?";
+		Object []params1=params.values().toArray();
+		user=(User) util.QueryOne(User.class, sql, params1);
 		String sql1="select * from address where user_id=?";
-		BaseUtil<Address> dao1=new BaseUtil<Address>();
-		List<Address> addresses=dao1.QueryList(Address.class,sql1,user.getId());
+		BaseUtil<Address> util1=new BaseUtil<Address>();
+		List<Address> addresses=util1.QueryList(Address.class,sql1,user.getId());
 		user.setAddresses(addresses);
 		return user;
 	}
@@ -39,19 +40,18 @@ public class UserDao {
 
 	public List<User> list(Map<String,Object> params,Pager pager,String order,String choose)
 	{
-		if(pager.getTotalRecord()==0)
-		{
-			pager.setTotalRecord(countUser());
-		}
-		
+
 		List<User> list=new ArrayList<User>();
 		BaseUtil<User> dao=new BaseUtil<User>();
 		String sql="select * from user  where 1=1";
 		for(String key:params.keySet())
 			sql=sql+" and "+key+"=?";
-		sql=sql+" order by ? ? limit ?,?";
+		//PreparedStatement使String类只能作为值出现在等号后面
+		if("desc".equals(choose))
+			sql=sql+" order by ? desc limit ?,?";
+		else sql=sql+" order by ? asc limit ?,?";
 		Object []params1=params.values().toArray();
-		list=dao.QueryList(User.class, sql,params1[0],order,choose,pager.getCurrent(),pager.getEachRecord());
+		list=dao.QueryList(User.class, sql,params1[0],order,pager.getCurrent(),pager.getEachRecord());
 		return list;
 	}
 	/*
@@ -103,11 +103,11 @@ public class UserDao {
 	/*
 	 * 该方法计算表总记录
 	 */
-	public int countUser()
+	public int countUser(int type)
 	{
 		int count =0;
 		BaseUtil dao=new BaseUtil();
-		count =dao.count(User.class,0);
+		count =dao.count(User.class,type);
 		return count;
 	}
 

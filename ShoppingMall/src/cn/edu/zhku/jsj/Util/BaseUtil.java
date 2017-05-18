@@ -30,7 +30,6 @@ public class BaseUtil<T> {
 		ct=DBUtil.getConnection();
 		try {	
 			ps=ct.prepareStatement(sql);
-			//TODO:升降序问题，没有效果，出现的效果为数据库默认的asc
 			if(params!=null)
 			{
 				for(int i=0;i<params.length;i++)
@@ -179,6 +178,14 @@ public class BaseUtil<T> {
 		}
 		return count;
 	}
-
+//	public static void main(String[] args) {
+//		BaseUtil<User> util=new BaseUtil<User>();
+//		String sql="select * from user order by ? desc";
+//		List<User> list=util.QueryList(User.class, sql,"id");
+//		for(User u:list)
+//		{
+//			System.out.println(u.toString());
+//		}
+//	}
 	
 }

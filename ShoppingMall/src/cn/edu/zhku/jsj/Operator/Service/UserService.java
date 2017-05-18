@@ -1,6 +1,7 @@
 package cn.edu.zhku.jsj.Operator.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,7 +9,7 @@ import cn.edu.zhku.jsj.Dao.UserDao;
 import cn.edu.zhku.jsj.Model.Pager;
 import cn.edu.zhku.jsj.Model.User;
 
-public class CustomerService {
+public class UserService {
 	/*
 	 * pager 提供当前页数，每页记录
 	 */
@@ -19,25 +20,30 @@ public class CustomerService {
 		list=dao.list(params, pager, order, choose);
 		return list;
 	}
-	public User load(String value)
+	public User load(String value,int type)
 	{
 		User user=new User();
 		UserDao dao=new UserDao();
-		user=dao.load("username", value);
+		Map<String,Object>map=new HashMap<String,Object>();
+		map.put("type",type);
+		map.put("username",value);
+		user=dao.load(map);
 		return user;
 	}
-	public Pager countCustomer()
+	public int countCustomerOrStore(int type)
 	{
 		Pager pager=new Pager();
 		UserDao dao=new UserDao();
-		pager.setTotalRecord(dao.countUser());
-		return pager;
+		pager.setTotalRecord(dao.countUser(type));
+		return pager.getTotalRecord();
 	}
 	public User get(int id)
 	{
 		User user=new User();
 		UserDao dao=new UserDao();
-		user=dao.load("id", id);
+		Map<String,Object>map=new HashMap<String,Object>();
+		map.put("id",id);
+		user=dao.load(map);
 		return user;
 	}
 	public boolean delete(int id)
