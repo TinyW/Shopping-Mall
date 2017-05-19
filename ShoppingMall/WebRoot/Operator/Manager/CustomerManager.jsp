@@ -24,9 +24,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   	<form>
-  		<input type="text" name="username"/>
-  		<input type="button" value="搜索用户名" onclick="loadInfo()"/>
-  		<span>按</span>
+  		
+  		<span>排序方式：</span>
   		<select name="order" onchange='emptyRecord()'>
   			<option value="id" selected="selected">编号</option>
   			<option value="username">姓名</option>
@@ -38,11 +37,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   		<input type="hidden" name="currentPage" value="1">
   		<input type="hidden" name="eachRecord" value="10">
 
-  		<input type="button" value="确定" onclick="emptyRecord(),listInfo()">
+  		<input type="button" value="显示所有顾客" onclick="emptyRecord(),listInfo()">
+  		<input type="text" name="username" onfocus="emptyRecord()"/>
+  		<input type="button" value="搜索用户名" onclick="listInfo()"/>
   	</form>
   	<table id="UserTable" border="1"></table>
   	
-  	<form action="">
+  	<div>
   			<ul class="Pager"></ul>
 		   	<ul>
 		   		<li>
@@ -52,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		   		</li>
 		   		<li><input type="button" value="确定" onclick="change(),listInfo()"></li>
 		   	</ul>
-    	</form>
+    </div>
   	
   </body>
 </html>

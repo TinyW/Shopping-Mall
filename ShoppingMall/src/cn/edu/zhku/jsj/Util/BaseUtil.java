@@ -1,5 +1,6 @@
 package cn.edu.zhku.jsj.Util;
 
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Connection;
@@ -8,10 +9,8 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import cn.edu.zhku.jsj.Model.Pager;
-import cn.edu.zhku.jsj.Model.User;
 
 public class BaseUtil<T> {
 	private  Connection ct;
@@ -32,9 +31,22 @@ public class BaseUtil<T> {
 			ps=ct.prepareStatement(sql);
 			if(params!=null)
 			{
+				int length=1;
 				for(int i=0;i<params.length;i++)
 				{
-					ps.setObject(i+1,params[i]);
+					
+					if(isArray(params[i]))
+					{
+						Object s[]=(Object [])params[i];
+						length=s.length;
+						for(int j=0;j<length;j++)
+						{
+							ps.setObject(i+j+1, s[j]);
+						}
+					}
+					else
+						ps.setObject(length+i,params[i]);
+						
 				}
 			}
 
@@ -155,17 +167,24 @@ public class BaseUtil<T> {
 		
 		return flag;
 	}
-	public int count(Class<T>clz,int type)
+	public int count(Class<T>clz,String sql,int type,Object... param)
 	{
 		int count =0;
 		ct=DBUtil.getConnection();
 		try {
-			String name=clz.getName().substring(clz.getName().lastIndexOf(".")+1);
-			System.out.println(name);
-			String sql="select count(*) from "+name+" where type=?";
-			System.out.println(sql);
+//			String name=clz.getName().substring(clz.getName().lastIndexOf(".")+1);
+//			System.out.println(name);
+//			String sql="select count(*) from "+name+" where type=?";
+//			System.out.println(sql);
 			ps=ct.prepareStatement(sql);
 			ps.setInt(1,type);
+			if(param!=null)
+			{	
+				for(int i=0;i<param.length;i++)
+				{
+					ps.setObject(i+2,param[i]);
+				}
+			}
 			rs=ps.executeQuery();
 			rs.next();
 			count=rs.getInt(1);
@@ -177,6 +196,10 @@ public class BaseUtil<T> {
 			DBUtil.closeAll(ct, ps, rs);
 		}
 		return count;
+	}
+	public boolean isArray(Object obj)
+	{
+		return obj.getClass().isArray();
 	}
 //	public static void main(String[] args) {
 //		BaseUtil<User> util=new BaseUtil<User>();

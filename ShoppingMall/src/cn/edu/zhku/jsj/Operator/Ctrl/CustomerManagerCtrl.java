@@ -2,6 +2,8 @@ package cn.edu.zhku.jsj.Operator.Ctrl;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -26,15 +28,21 @@ import net.sf.json.JSONObject;
 public class CustomerManagerCtrl extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Method []methods=this.getClass().getMethods();
 		String method=request.getParameter("method");
-		if("list".equals(method))
-			list(request,response);
-		else if("load".equals(method))
-			load(request,response);
-		else if("get".equals(method))
-			get(request,response);
-		else if("delete".equals(method))
-			delete(request,response);
+		try {
+			for(Method m:methods)
+			{
+				if(m.getName().equalsIgnoreCase(method))
+					m.invoke(this,request,response);
+			}
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,7 +54,9 @@ public class CustomerManagerCtrl extends HttpServlet {
 	public void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		Pager pager=new Pager();
 		UserService service=new UserService();
+		Map<String,Object>params=new HashMap<String,Object>();
 		//获取参数
+		String username=request.getParameter("username");
 		String order=request.getParameter("order");
 		String choose=request.getParameter("choose");
 		int currentPage=Integer.parseInt(request.getParameter("currentPage"));
@@ -56,74 +66,34 @@ public class CustomerManagerCtrl extends HttpServlet {
 			//totalPage不为0则存进pager
 			pager.setTotalRecord(totalRecord);
 		//查询用户权限为0的顾客数量
-		else pager.setTotalRecord(service.countCustomerOrStore(0));
+		else if(null==username||username.equals(""))
+				pager.setTotalRecord(service.countCustomerOrStore(0,null));
+		else
+		{
+			params.put("username",username);
+			pager.setTotalRecord(service.countCustomerOrStore(0,params));
+		}
 
 		//参数设置
-		Map<String,Object>params=new HashMap<String,Object>();
+		
 		params.put("type",0);//用户权限0
 		
 		pager.setCurrentPage(currentPage);
 		pager.setEachRecord(eachRecord);
-
-		List<User> list=service.list(params, pager, order, choose);
-
-		
-		JSONObject resultJson = new JSONObject();// 创建最后结果的json
-        JSONArray jsonArray = new JSONArray();// json数组
-        JSONObject o1=new JSONObject();
-        //总记录数
-        o1.put("totalRecord",pager.getTotalRecord());
-        JSONObject o2=new JSONObject();
-        o2.put("totalPage",pager.getTotalPage());
-        jsonArray.add(o1);
-        jsonArray.add(o2);
-    	 for(User u:list)
-         {
-         	JSONObject obj=new JSONObject();
-         	obj.put("username", u.getUsername());
-         	obj.put("id", u.getId());
-         	obj.put("sex",u.getSex());
-         	obj.put("type",u.getType());
-         	jsonArray.add(obj);
-         }
-         resultJson.put("users",jsonArray);
-       
-		PrintWriter out=response.getWriter();
-		out.println(resultJson);
-        out.flush();
-        out.close();
-	}
-	/*
-	 * 该方法根据提交的搜索条件查询用户
-	 * 搜索条件只限顾客用户名
-	 */
-	//TODO:模糊查询问题
-	public void load(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
-		
-		String username=new String(request.getParameter("username").getBytes("ISO-8859-1"),"utf-8");
-		UserService service=new UserService();
-		//顾客用户名和权限0
-		User u=service.load(username,0);
-
-		JSONObject obj=new JSONObject();
-
-		if(null==u)
-		{
-			obj.put("msg","没有该用户");
-		}
+		List<User> list=new ArrayList<User>();
+		if(null==username||username.equals(""))
+			list=service.list(params, pager, order, choose);
 		else
 		{
-			obj.put("username", u.getUsername());
-	    	obj.put("id", u.getId());
-	    	obj.put("sex",u.getSex());
-	    	obj.put("type",u.getType());
-			
+			System.out.println("username:"+username);
+			params.put("username",username);
+			list=service.load(params,pager,order,choose);
 		}
-    	PrintWriter out=response.getWriter();
-		out.println(obj);
-        out.flush();
-        out.close();
+		process(request,response,list,pager);
+		
+		
 	}
+
 	//查看具体用户信息，相应的地址也会被获取
 	public void get(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		int id=Integer.parseInt(request.getParameter("id"));
@@ -141,6 +111,41 @@ public class CustomerManagerCtrl extends HttpServlet {
 		obj.put("flag",flag);
 		PrintWriter out=response.getWriter();
 		out.println(obj);
+        out.flush();
+        out.close();
+	}
+	public void process(HttpServletRequest request, HttpServletResponse response,List<User> list,Pager pager) throws ServletException, IOException{
+		JSONObject resultJson = new JSONObject();// 创建最后结果的json
+        JSONArray jsonArray = new JSONArray();// json数组
+        JSONObject o1=new JSONObject();
+        if(pager.getTotalPage()==0)
+        {
+        	o1.put("msg","搜索不到用户");
+        	jsonArray.add(o1);
+        }
+        else
+        {
+        	//总记录数
+            o1.put("totalRecord",pager.getTotalRecord());
+            JSONObject o2=new JSONObject();
+            o2.put("totalPage",pager.getTotalPage());
+            jsonArray.add(o1);
+            jsonArray.add(o2);
+        	 for(User u:list)
+             {
+             	JSONObject obj=new JSONObject();
+             	obj.put("username", u.getUsername());
+             	obj.put("id", u.getId());
+             	obj.put("sex",u.getSex());
+             	obj.put("type",u.getType());
+             	jsonArray.add(obj);
+             }
+        }
+        
+         resultJson.put("users",jsonArray);
+       
+		PrintWriter out=response.getWriter();
+		out.println(resultJson);
         out.flush();
         out.close();
 	}
