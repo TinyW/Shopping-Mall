@@ -9,6 +9,7 @@ import cn.edu.zhku.jsj.Model.Address;
 import cn.edu.zhku.jsj.Model.Pager;
 import cn.edu.zhku.jsj.Model.User;
 import cn.edu.zhku.jsj.Util.BaseUtil;
+import cn.edu.zhku.jsj.Util.DateUtil;
 import cn.edu.zhku.jsj.Model.Address;
 
 public class UserDao {
@@ -46,11 +47,12 @@ public class UserDao {
 		return list;
 	}
 	/*
-	 * 该方法根据查询条件查询具体用户
+	 * 该方法根据查询条件查询具体用户以及相应的地址
 	 * 成功返回User,失败返回null
+	 * 注：当flag为true时执行地址查询，false时不查询地址
 	 */
 
-	public User load(Map<String,Object> params)
+	public User load(Map<String,Object> params,boolean flag)
 	{
 		User user=new User();
 		BaseUtil<User> util=new BaseUtil<User>();
@@ -59,10 +61,15 @@ public class UserDao {
 			sql=sql+" and "+key+"=?";
 		Object []params1=params.values().toArray();
 		user=(User) util.QueryOne(User.class, sql, params1);
-		String sql1="select * from address where user_id=?";
-		BaseUtil<Address> util1=new BaseUtil<Address>();
-		List<Address> addresses=util1.QueryList(Address.class,sql1,user.getId());
-		user.setAddresses(addresses);
+		//flag为true时查询地址
+		if(flag)
+		{
+			String sql1="select * from address where user_id=?";
+			BaseUtil<Address> util1=new BaseUtil<Address>();
+			List<Address> addresses=util1.QueryList(Address.class,sql1,user.getId());
+			user.setAddresses(addresses);
+		}
+		
 		return user;
 	}
 	/*
@@ -161,6 +168,9 @@ public class UserDao {
 	}
 	
 	public static void main(String[] args) {
-
+		UserDao dao=new UserDao();
+		java.sql.Date date=DateUtil.getTime("2004-5-4");
+		User user=new User("小智","yir","123456","12343546467","女",2,date,new java.sql.Date(new java.util.Date().getTime()));
+		System.out.println(dao.save(user));
 	}
 }

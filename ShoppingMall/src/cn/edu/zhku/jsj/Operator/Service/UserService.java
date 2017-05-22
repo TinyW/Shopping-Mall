@@ -61,7 +61,7 @@ public class UserService {
 		UserDao dao=new UserDao();
 		Map<String,Object>map=new HashMap<String,Object>();
 		map.put("id",id);
-		user=dao.load(map);
+		user=dao.load(map,true);
 		return user;
 	}
 	/*
