@@ -7,7 +7,7 @@ public class Comment {
 	private int id;
 	private String point;//评论
 	private Good good;
-	private List<User> users=new ArrayList<User>();
+	private User user;
 	public int getId() {
 		return id;
 	}
@@ -26,24 +26,24 @@ public class Comment {
 	public void setGood(Good good) {
 		this.good = good;
 	}
-	public List<User> getUsers() {
-		return users;
+	public User getUser() {
+		return user;
 	}
-	public void setUsers(List<User> users) {
-		this.users = users;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public Comment(String point, Good good, List<User> users) {
+	public Comment(String point, Good good,User user) {
 		super();
 		this.point = point;
 		this.good = good;
-		this.users = users;
+		this.user = user;
 	}
 	public Comment() {
 		super();
 	}
 	@Override
 	public String toString() {
-		return "Comment [id=" + id + ", point=" + point + ", good=" + good + ", users=" + users + "]";
+		return "Comment [id=" + id + ", point=" + point + ", good=" + good + ", users=" + user + "]";
 	}
 	
 	

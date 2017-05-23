@@ -36,11 +36,7 @@ public class UserDao {
 		if("desc".equals(choose))
 			sql=sql+" order by ? desc limit ?,?";
 		else sql=sql+" order by ? asc limit ?,?";
-		System.out.println(sql);
-		for(String key:params.keySet())
-		{
-			System.out.println(params.get(key));
-		}
+
 		Object []params1=params.values().toArray();
 		Object param=params1;
 		list=util.QueryList(User.class, sql,param,order,pager.getCurrent(),pager.getEachRecord());
@@ -60,6 +56,7 @@ public class UserDao {
 		for(String key:params.keySet())
 			sql=sql+" and "+key+"=?";
 		Object []params1=params.values().toArray();
+		
 		user=(User) util.QueryOne(User.class, sql, params1);
 		//flag为true时查询地址
 		if(flag)
@@ -90,8 +87,8 @@ public class UserDao {
 		if("desc".equals(choose))
 			sql=sql+" order by ? desc limit ?,?";
 		else sql=sql+" order by ? asc limit ?,?";
-		Object []params1=params.values().toArray();
-		list=util.QueryList(User.class, sql,params1[0],order,pager.getCurrent(),pager.getEachRecord());
+		Object params1=params.values().toArray();
+		list=util.QueryList(User.class, sql,params1,order,pager.getCurrent(),pager.getEachRecord());
 		return list;
 	}
 	/*

@@ -167,7 +167,7 @@ public class BaseUtil<T> {
 		
 		return flag;
 	}
-	public int count(Class<T>clz,String sql,int type,Object... param)
+	public int count(Class<T>clz,String sql,Object... params)
 	{
 		int count =0;
 		ct=DBUtil.getConnection();
@@ -177,14 +177,28 @@ public class BaseUtil<T> {
 //			String sql="select count(*) from "+name+" where type=?";
 //			System.out.println(sql);
 			ps=ct.prepareStatement(sql);
-			ps.setInt(1,type);
-			if(param!=null)
-			{	
-				for(int i=0;i<param.length;i++)
+
+			if(params!=null)
+			{
+				int length=1;
+				for(int i=0;i<params.length;i++)
 				{
-					ps.setObject(i+2,param[i]);
+					
+					if(isArray(params[i]))
+					{
+						Object s[]=(Object [])params[i];
+						length=s.length;
+						for(int j=0;j<length;j++)
+						{
+							ps.setObject(i+j+1, s[j]);
+						}
+					}
+					else
+						ps.setObject(length+i,params[i]);
+						
 				}
 			}
+
 			rs=ps.executeQuery();
 			rs.next();
 			count=rs.getInt(1);

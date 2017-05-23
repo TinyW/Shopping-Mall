@@ -2,14 +2,14 @@ package cn.edu.zhku.jsj.Model;
 
 public class Good {
 	private int id;
-	private String name;
-	private double price;
-	private int totalNum;
-	private int remainNum;
-	private String pic;
+	private String gname;
+	private double gprice;
+	private int gtotalNum;
+	private int gremainNum;
+	private String gpic;
 	private String introduction;
-	private int type;//类型
-	private int state;//状态：0上架，1下架
+	private String gtype;//类型
+	private int gstate;//状态：0上架，1下架
 	private User user;//店铺
 	public int getId() {
 		return id;
@@ -18,34 +18,34 @@ public class Good {
 		this.id = id;
 	}
 	public String getName() {
-		return name;
+		return gname;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.gname = name;
 	}
 	public double getPrice() {
-		return price;
+		return gprice;
 	}
 	public void setPrice(double price) {
-		this.price = price;
+		this.gprice = price;
 	}
 	public int getTotalNum() {
-		return totalNum;
+		return gtotalNum;
 	}
 	public void setTotalNum(int totalNum) {
-		this.totalNum = totalNum;
+		this.gtotalNum = totalNum;
 	}
 	public int getRemainNum() {
-		return remainNum;
+		return gremainNum;
 	}
 	public void setRemainNum(int remainNum) {
-		this.remainNum = remainNum;
+		this.gremainNum = remainNum;
 	}
 	public String getPic() {
-		return pic;
+		return gpic;
 	}
 	public void setPic(String pic) {
-		this.pic = pic;
+		this.gpic = pic;
 	}
 	public String getIntroduction() {
 		return introduction;
@@ -53,17 +53,17 @@ public class Good {
 	public void setIntroduction(String introduction) {
 		this.introduction = introduction;
 	}
-	public int getType() {
-		return type;
+	public String getType() {
+		return gtype;
 	}
-	public void setType(int type) {
-		this.type = type;
+	public void setType(String type) {
+		this.gtype = type;
 	}
 	public int getState() {
-		return state;
+		return gstate;
 	}
 	public void setState(int state) {
-		this.state = state;
+		this.gstate = state;
 	}
 	public User getUser() {
 		return user;
@@ -71,25 +71,25 @@ public class Good {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public Good(String name, double price, int totalNum, int remainNum, String pic, String introduction, int type,
+	public Good(String name, double price, int totalNum, int remainNum, String pic, String introduction, String type,
 			int state) {
 		super();
-		this.name = name;
-		this.price = price;
-		this.totalNum = totalNum;
-		this.remainNum = remainNum;
-		this.pic = pic;
+		this.gname = name;
+		this.gprice = price;
+		this.gtotalNum = totalNum;
+		this.gremainNum = remainNum;
+		this.gpic = pic;
 		this.introduction = introduction;
-		this.type = type;
-		this.state = state;
+		this.gtype = type;
+		this.gstate = state;
 	}
 	public Good() {
 		super();
 	}
 	@Override
 	public String toString() {
-		return "Good [id=" + id + ", name=" + name + ", price=" + price + ", totalNum=" + totalNum + ", remainNum="
-				+ remainNum + ", pic=" + pic + ", introduction=" + introduction + ", type=" + type + ", state=" + state
+		return "Good [id=" + id + ", name=" + gname + ", price=" + gprice + ", totalNum=" + gtotalNum + ", remainNum="
+				+ gremainNum + ", pic=" + gpic + ", introduction=" + introduction + ", type=" + gtype + ", state=" + gstate
 				+ "]";
 	}
 	

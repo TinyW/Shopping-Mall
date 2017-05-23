@@ -6,6 +6,13 @@ public class Address {
 	private String receivertel;
 	private String receiver;
 	private String location;
+	private User user;
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	public int getId() {
 		return id;
 	}
@@ -35,7 +42,7 @@ public class Address {
 		return "Address [id=" + id + ", receivertel=" + receivertel + ", receiver=" + receiver + ", location="
 				+ location + "]";
 	}
-	public Address(String receivertel, String receiver, String location) {
+	public Address( String receiver,String receivertel, String location) {
 		super();
 		this.receivertel = receivertel;
 		this.receiver = receiver;

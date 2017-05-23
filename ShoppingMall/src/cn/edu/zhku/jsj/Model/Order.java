@@ -20,6 +20,12 @@ public class Order {
 	public Date getCreateDate() {
 		return createDate;
 	}
+	public List<OrderItem> getItems() {
+		return items;
+	}
+	public void setItems(List<OrderItem> items) {
+		this.items = items;
+	}
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
