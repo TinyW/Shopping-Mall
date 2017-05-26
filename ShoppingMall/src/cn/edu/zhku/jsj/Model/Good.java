@@ -11,66 +11,7 @@ public class Good {
 	private String gtype;//类型
 	private int gstate;//状态：0上架，1下架
 	private User user;//店铺
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public String getName() {
-		return gname;
-	}
-	public void setName(String name) {
-		this.gname = name;
-	}
-	public double getPrice() {
-		return gprice;
-	}
-	public void setPrice(double price) {
-		this.gprice = price;
-	}
-	public int getTotalNum() {
-		return gtotalNum;
-	}
-	public void setTotalNum(int totalNum) {
-		this.gtotalNum = totalNum;
-	}
-	public int getRemainNum() {
-		return gremainNum;
-	}
-	public void setRemainNum(int remainNum) {
-		this.gremainNum = remainNum;
-	}
-	public String getPic() {
-		return gpic;
-	}
-	public void setPic(String pic) {
-		this.gpic = pic;
-	}
-	public String getIntroduction() {
-		return introduction;
-	}
-	public void setIntroduction(String introduction) {
-		this.introduction = introduction;
-	}
-	public String getType() {
-		return gtype;
-	}
-	public void setType(String type) {
-		this.gtype = type;
-	}
-	public int getState() {
-		return gstate;
-	}
-	public void setState(int state) {
-		this.gstate = state;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
+	
 	public Good(String name, double price, int totalNum, int remainNum, String pic, String introduction, String type,
 			int state) {
 		super();
@@ -83,6 +24,87 @@ public class Good {
 		this.gtype = type;
 		this.gstate = state;
 	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getGname() {
+		return gname;
+	}
+
+	public void setGname(String gname) {
+		this.gname = gname;
+	}
+
+	public double getGprice() {
+		return gprice;
+	}
+
+	public void setGprice(double gprice) {
+		this.gprice = gprice;
+	}
+
+	public int getGtotalNum() {
+		return gtotalNum;
+	}
+
+	public void setGtotalNum(int gtotalNum) {
+		this.gtotalNum = gtotalNum;
+	}
+
+	public int getGremainNum() {
+		return gremainNum;
+	}
+
+	public void setGremainNum(int gremainNum) {
+		this.gremainNum = gremainNum;
+	}
+
+	public String getGpic() {
+		return gpic;
+	}
+
+	public void setGpic(String gpic) {
+		this.gpic = gpic;
+	}
+
+	public String getIntroduction() {
+		return introduction;
+	}
+
+	public void setIntroduction(String introduction) {
+		this.introduction = introduction;
+	}
+
+	public String getGtype() {
+		return gtype;
+	}
+
+	public void setGtype(String gtype) {
+		this.gtype = gtype;
+	}
+
+	public int getGstate() {
+		return gstate;
+	}
+
+	public void setGstate(int gstate) {
+		this.gstate = gstate;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
 	public Good() {
 		super();
 	}

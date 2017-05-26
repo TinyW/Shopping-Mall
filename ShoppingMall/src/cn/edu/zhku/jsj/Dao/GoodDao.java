@@ -1,7 +1,7 @@
 package cn.edu.zhku.jsj.Dao;
 
 import java.util.ArrayList;
-
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,9 +21,9 @@ public class GoodDao {
 		boolean flag=false;
 		String sql="insert into good(introduction,gname,gpic,gprice,"
 				+ "gremainnum,gstate,gtotalnum,gtype,user_id) value(?,?,?,?,?,?,?,?,?)";
-		Object []params={good.getIntroduction(),good.getName(),good.getPic(),
-				good.getPrice(),good.getRemainNum(),good.getState(),good.getTotalNum(),
-				good.getType(),user_id};
+		Object []params={good.getIntroduction(),good.getGname(),good.getGpic(),
+				good.getGprice(),good.getGremainNum(),good.getGstate(),good.getGtotalNum(),
+				good.getGtype(),user_id};
 		BaseUtil<Good> util =new BaseUtil<Good>();
 		flag=util.update(sql, params);
 		return flag;
@@ -52,9 +52,9 @@ public class GoodDao {
 		boolean flag=false;
 		String sql="update good set introduction=?,gname=?,gpic=?,gprice=?,"
 				+ "gremainnum=?,gstate=?,gtotalnum=?,gtype=? where id=?";
-		Object []params={good.getIntroduction(),good.getName(),good.getPic(),
-				good.getPrice(),good.getRemainNum(),good.getState(),good.getTotalNum(),
-				good.getType(),good.getId()};
+		Object []params={good.getIntroduction(),good.getGname(),good.getGpic(),
+				good.getGprice(),good.getGremainNum(),good.getGstate(),good.getGtotalNum(),
+				good.getGtype(),good.getId()};
 		BaseUtil<Good> util =new BaseUtil<Good>();
 		flag=util.update(sql, params);
 		return flag;
@@ -123,14 +123,19 @@ public class GoodDao {
 			else
 				sql=sql+" and "+key+"=?";
 		}
-		System.out.println("Good fuzzySql:"+sql);
+		
 		if("desc".equals(choose))
 			sql=sql+" order by ? desc limit ?,?";
 		else 
 			sql=sql+" order by ? asc limit ?,?";
+		System.out.println("Good fuzzySql:"+sql);
 		Object params=map.values().toArray();
 		BaseUtil<Good>util=new BaseUtil<Good>();
 		goods=util.QueryList(Good.class, sql, params,order,pager.getCurrent(),pager.getEachRecord());
+		for(Good g:goods)
+		{
+			System.out.println(g.toString());
+		}
 		return goods;
 	}
 	/*
@@ -167,22 +172,21 @@ public class GoodDao {
 	}
 	public static void main(String[] args) {
 //
-//		GoodDao dao=new GoodDao();
+		GoodDao dao=new GoodDao();
 //
 //		
-//		List<Good> list=new ArrayList<Good>();
-//		Map<String,Object> map=new HashMap<String,Object>();
-////		map.put("gprice",34);
-//		Pager pager=new Pager();
-//		pager.setTotalRecord(dao.countGood(null));
-//		pager.setEachRecord(4);
-//		pager.setCurrentPage(2);
-//		map.put("gprice",34);
-//		String order="id";
-//		String choose="desc";
-//		list=dao.list(map, pager, order, choose);
-//		for(Good g:list)
-//			System.out.println(g.toString());
+		List<Good> list=new ArrayList<Good>();
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("gtype","女人");
+		Pager pager=new Pager();
+		pager.setTotalRecord(dao.countGood(map));
+		pager.setEachRecord(4);
+		pager.setCurrentPage(1);
+		String order="id";
+		String choose="desc";
+		list=dao.fuzzyload(map, pager, order, choose);
+		for(Good g:list)
+			System.out.println(g.toString());
 		
 //		System.out.println("-----------------");
 //		

@@ -34,7 +34,7 @@
 				},
 				success:function(data){
 					if(data.flag=="true")
-						location.href="Operator/Manager/HomePage.jsp";
+						location.href="Shopping/Manager/HomePage.jsp";
 					elsess
 						$(".placeholder:eq(0)").html("用户名或密码错误!").css("color","#f00");
 				}
