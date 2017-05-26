@@ -20,9 +20,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="css/public.css">
 
 	<style type="text/css">
-		body{
+		.operator-header{
+			
 			width:1000px;
 			margin:0 auto;
+			margin-top:50px;
 		}
 		h1{
 			text-align:center;
@@ -39,23 +41,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			color:#999999;
 			margin-bottom:20px;
 		}
-		.header ul{
+		.operator-header ul{
 			float:left;
 			width:1000px;
 			background-color:#f96;
 		}
-		.header ul li{
+		.operator-header ul li{
 			float:left;
 			padding-left:52px;
 			
 		}
-		.header ul li a{
+		.operator-header ul li a{
 			display:inline-block;
 			text-decoration:none;
 			color:#fff;
 			padding:15px 10px;
 		}
-		.header ul li a:hover{
+		.operator-header ul li a:hover{
 			background-color:#FF6633;
 			
 		}
@@ -66,14 +68,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
   	
-  	<div class="header">
-  		<h1>购物管理系统</h1>
-  		<h2>${sessionScope.user.username },欢迎进入</h2>
+  	<div class="operator-header">
   		<ul>
-  			<li><a href="Operator/Manager/HomePage.jsp" id="homepage">首页</a></li>
+  			<li><a href="Operator/Manager/HomePage.jsp" id="homepage">个人中心</a></li>
 	    	<li><a href="Operator/Manager/CustomerManager.jsp" id="customer">顾客管理</a></li>
 	    	<li><a href="Operator/Manager/StoreManager.jsp" id="store">店铺管理</a></li>
-	    	<li><a href="Operator/Manager/SingleUser.jsp" id="self">个人中心</a></li>
 	    	<li><a href="#">举报处理</a></li>
     	</ul>
   	</div>

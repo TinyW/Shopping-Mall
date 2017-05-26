@@ -1,16 +1,15 @@
-#customer{
+#store{
 	background:#FF6633;
 }
-.custManager
+.storeManager
 {
 	width:1000px;
 	margin:0 auto;
-	color:#333333;
 }	
-.custManager form{
+.storeManager form{
 	padding-top:70px;
 }
-.custManager form input
+.storeManager form input
 {
 	width:250px;
 	height:35px;
@@ -19,7 +18,7 @@
 	padding-left:10px;
 	
 }		
-.custManager input.btn
+.storeManager input.btn
 {
 	width:100px;
 	height:35px;
@@ -31,14 +30,14 @@
 	color:#fff;
 	padding:0;
 }	
-.custManager input.btn:hover
+.storeManager input.btn:hover
 {
 	background-color:#FF6705;
 }
-.custManager .searchUser{
+.storeManager .searchUser{
 	float:right;
 }	
-.custManager form span
+.storeManager form span
 {
 	display:inline-block;
 	width:80px;
@@ -48,7 +47,14 @@
 	padding-left:12px;
 	color:#707070;
 }
-.custManager select
+.storeManager select
+{
+	border:1px solid #CCCCCC;
+	color:#CCCCCC;
+	width:70px;
+	height:35px;
+	outline:none;
+}
 {
 	border:1px solid #CCCCCC;
 	color:#CCCCCC;

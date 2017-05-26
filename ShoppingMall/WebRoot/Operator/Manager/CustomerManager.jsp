@@ -24,40 +24,48 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <jsp:include page="/Shopping/public/Header.jsp">
+  	<jsp:param value="1" name="index"/>
+  </jsp:include>
   	<jsp:include page="/Operator/public/publicHeader.jsp">
   		<jsp:param value="2" name="index"/>
   	</jsp:include>
-  	<form>
-  		
-  		<span>排序方式：</span>
-  		<select name="order" onchange='emptyRecord()'>
-  			<option value="id" selected="selected">编号</option>
-  			<option value="username">姓名</option>
-  		</select>
-  		<select name="choose" onchange='empty()'>
-  			<option value="asc" selected="selected">升序</option>
-  			<option value="desc">降序</option>
-  		</select>
-  		<input type="hidden" name="currentPage" value="1">
-  		<input type="hidden" name="eachRecord" value="10">
-
-  		<input type="button" value="显示所有顾客" onclick="emptyRecord(),listInfo()">
-  		<input type="text" name="username" onfocus="emptyRecord()"/>
-  		<input type="button" value="搜索用户名" onclick="listInfo()"/>
-  	</form>
-  	<table id="UserTable" border="0" cellspacing="0"  cellpadding="0"></table>
+  	<div class="custManager">
+  		<form>
+	  		<span>排序方式</span>
+	  		<select name="order" onchange='emptyRecord()'>
+	  			<option value="id" selected="selected">编号</option>
+	  			<option value="username">姓名</option>
+	  		</select>
+	  		<select name="choose" onchange='empty()'>
+	  			<option value="asc" selected="selected">升序</option>
+	  			<option value="desc">降序</option>
+	  		</select>
+	  		<input type="hidden" name="currentPage" value="1">
+	  		<input type="hidden" name="eachRecord" value="10">
+	
+	  		<input type="button"  class="btn" value="显示所有顾客" onclick="emptyRecord(),listInfo()">
+	  		<div class="searchUser">
+	  			<input type="text" name="username" onfocus="emptyRecord()"/>
+	  			<input type="button"  class="btn" value="搜索顾客" onclick="listInfo()"/>
+	  		</div>
+	  		
+	  	</form>
+	  	<table id="UserTable" border="0" cellspacing="0"  cellpadding="0"></table>
+	  	
+	  	<div>
+			<ul class="Pager"></ul>
+		   	<ul>
+		   		<li>
+		   			<input type="hidden" name="totalRecord" value="0">
+		   			共<span class="totalPage">0</span>页
+		   			<span>到第<input name="randomPage" type="text" size="2">页</span>
+		   		</li>
+		   		<li><input class="btn" type="button" value="确定" onclick="change(),listInfo()"></li>
+		   	</ul>
+	    </div>
+  	</div>
   	
-  	<div>
-		<ul class="Pager"></ul>
-	   	<ul>
-	   		<li>
-	   			<input type="hidden" name="totalRecord" value="0">
-	   			共<span class="totalPage">0</span>页
-	   			<span>到第<input name="randomPage" type="text" size="2">页</span>
-	   		</li>
-	   		<li><input type="button" value="确定" onclick="change(),listInfo()"></li>
-	   	</ul>
-    </div>
   	
   </body>
 </html>

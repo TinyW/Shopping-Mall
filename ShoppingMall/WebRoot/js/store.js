@@ -34,8 +34,8 @@
 	                	 var totalRecord=$("input[name='totalRecord']");
 		                 var totalPage=$(".totalPage");
 		                 
-		                 ul.append('<li><a class="prevPage">《上一页</a></li>');
-		                 
+		                 ul.append('<li><a class="prevPage"><上一页</a></li>');
+		                 $("ul:last").show();
 		           		 for(var i=0;i< obj.length;i++)
 		           		 {
 		           		 	if(i==0)
@@ -66,7 +66,7 @@
 	             			var temp=j+1;
 	             			ul.append('<li><a class="c_page">'+temp+'</a></li>');
 	             		}
-						ul.append('<li><a class="nextPage">下一页 》</a></li>');
+						ul.append('<li><a class="nextPage">下一页></a></li>');
 						$("a").css("cursor","pointer");
 						//点击请求某一页数据
 						$(".c_page").mousedown(function(){
@@ -125,12 +125,42 @@
 							else return false;								
 						}) 
 	                }
+	                 table.css({"width":"60%","textAlign":"center","color":"#FFBBFF","margin":"20px auto"});
+	                 $("th").css({"backgroundColor":"#003399","fontSize":"20px","color":"#fff","padding":"10px 15px"});
+	                 $("tr:odd").css("backgroundColor","#FF6633");
+	                 $("tr:even").css("backgroundColor","#FF9966");
+	                 $("td").css({"fontSize":"20px","padding":"10px 15px"});
+	                 $("td a").css({"color":"#FFBBFF","textDecoration":"underline","paddingRight":"10%","fontSize":"20px"});
+	                 $("td a").hover(function(){
+	                	 $(this).css({"textDecoration":"none"});
+	                 },function(){
+	                	 $(this).css({"textDecoration":"underline"});
+	                 }
+	                );
+	                 ul.css({"marginLeft":"10%"});
+	                 $(".Pager li").css({"float":"left"});
+	                 $(".Pager li a").css({"color":"#7C7C7C","border":"1px solid #CCCCCC","borderRight":"none","padding":"10px 15px","fontSize":"16px"});
+	                 $(".Pager li a:last").css({"borderRight":"1px solid #999999"});
+	                 $(".Pager li a").hover(function(){
+	                	 $(this).css({"color":"#FF6700","borderColor":"#FF6700","borderRight":"1px solid #FF6700"});
+	                 },function(){
+	                	 $(this).css({"color":"#7C7C7C","borderColor":"#CCCCCC","borderRight":"none"});
+	                	 $(".Pager li a:last").css({"borderRight":"1px solid #999999"});
+	                 });
+	                 var currentPage=$("input[name='currentPage']").val();
+	                 //告知当前页面
+	                 $(".Pager li a:eq('+currentPage+')").css("color","#f00");
 	                
+	                 
                },  
              
            });  
           } 
-	    
+	   $(function(){
+		   $("ul:last").hide();
+		   $("ul:last li").css({"float":"left","color":"#7C7C7C","marginLeft":"20px"});
+		   $("ul:last li input[type='text']").css({"border":"1px solid #CCCCCC","color":"#FF6700","paddingLeft":"4px"});
+	   })
         function grant(type)
         {
         	if(type==0) return '顾客'
@@ -149,3 +179,4 @@
         {
         	$("input[name='currentPage']").val($("input[name='randomPage']").val());
         }
+        

@@ -1,26 +1,23 @@
-		body{
-			background:#003399;
-		}
-		body .bg{
-			float:left;
-			background:#fff;
-		}
 		#homepage{
 			background:#FF6633;
 		}
-		.left-content{
+		.bg{
+			width:1000px;
+			margin:0 auto;
+		}
+		.bg .left-content{
 			float:left;
 			margin:36px 50px 0px 0px;
 		}
-		.left-content ul{
+		.bg .left-content ul{
 			
 		}
-		.left-content ul li{
+		.bg .left-content ul li{
 			background:#FF9966;
 			padding-left:20px;
 			margin-bottom:30px;
 		}
-		.left-content ul li a{
+		.bg .left-content ul li a{
 			cursor:pointer;
 			display:inline-block;
 			width:100px;
@@ -30,23 +27,23 @@
 			font-weight:bold;
 			text-decoration:underline;
 		}
-		.left-content ul li a:hover{
+		.bg .left-content ul li a:hover{
 			text-decoration:none;
 		}
-		.right-content{
+		.bg .right-content{
 			float:left;
 			margin-top:60px;
 			margin-left:150px;
 		}
-		.right-content div{
+		.bg .right-content div{
 			width:500px;
 		}
-		label{
+		.bg label{
 			display:inline-block;
 			width:100px;
 			text-align:right;
 		}
-		input{
+		.bg input{
 			width:300px;
 			height:42px;
 			font-size:20px;
@@ -61,21 +58,21 @@
     		outline: none; 
 		}
 		
-		 input.date{
+		 .bg input.date{
 			width:40px;
 			margin:0;
 		}
-		 input.first{
+		.bg input.first{
 			margin-left:25px;
 			width:80px;
 		}
-		 .sex{
+		.bg .sex{
 			width:15px;
 			height:15px;
 			margin-bottom:30px;
 		}
 		
-		 .btn{
+		.bg .btn{
 			cursor:pointer;
 			color:#E8E8E8;
 			background:#FF9966;
@@ -83,11 +80,11 @@
 			border-bottom:1px solid #F9885B;
 			margin-left:100px;
 		}
-		 .btn:hover{
+		.bg .btn:hover{
 			background:#F98451;
 			color:#E84A07;
 		}
-		 .btn:active{
+		.bg .btn:active{
 			border:1px solid #F77744;
 			border-bottom:1px solid #FDDFD2;
 			background:#F9885B;

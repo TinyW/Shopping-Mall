@@ -62,10 +62,10 @@ public class CommentDao {
 	{
 		List<Comment> comments=new ArrayList<Comment>();
 		String sql="select * from comment where 1=1";
-		Object []params=map.values().toArray();
+		Object params=map.values().toArray();
 		for(String key:map.keySet())
 			sql=sql+" and "+key+"=?";
-
+		sql=sql+" limit ?,?";
 		BaseUtil<Comment> util=new BaseUtil<Comment>();
 		comments=util.QueryList(Comment.class, sql, params,pager.getCurrent(),pager.getEachRecord());
 		return comments;

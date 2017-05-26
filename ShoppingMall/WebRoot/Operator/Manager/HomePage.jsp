@@ -270,9 +270,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <jsp:include page="/Shopping/public/Header.jsp">
+  	<jsp:param value="1" name="index"/>
+  </jsp:include>
   <div class="bg">
   	<jsp:include page="/Operator/public/publicHeader.jsp">
-    	<jsp:param value="1" name="index"/>
+    	<jsp:param value="2" name="index"/>
     </jsp:include>
     <div class="left-content">
     	<ul>

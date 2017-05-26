@@ -164,7 +164,8 @@ public class GoodDao {
 				else
 					sql=sql+" and "+key+"=?";
 			}
-			count =util.count(Good.class,sql,value);
+			Object param=map.values().toArray();
+			count =util.count(Good.class,sql,param);
 		}
 		else
 			count =util.count(Good.class,sql);
