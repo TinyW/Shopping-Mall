@@ -159,7 +159,7 @@ public class GoodDao {
 				{
 					//模糊查询
 					sql=sql+" and "+key+" like ?";
-					value= "%"+map.get(key)+"%";
+					map.put(key,"%"+map.get(key)+"%");
 				}
 				else
 					sql=sql+" and "+key+"=?";

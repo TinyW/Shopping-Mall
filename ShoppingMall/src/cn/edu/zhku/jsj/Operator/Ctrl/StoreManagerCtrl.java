@@ -23,7 +23,7 @@ import net.sf.json.JSONObject;
 
 
 
-@WebServlet(name="StoreManagerCtrl",urlPatterns="/StoreManagerCtrl")
+@WebServlet(name="StoreManagerCtrl",urlPatterns="/Operator/StoreManagerCtrl")
 @SuppressWarnings("serial")
 public class StoreManagerCtrl extends HttpServlet {
 

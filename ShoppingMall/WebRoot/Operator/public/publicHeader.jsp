@@ -17,7 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="description" content="This is my page">
 	
 
-	<link rel="stylesheet" type="text/css" href="css/public.css">
+	<link rel="stylesheet" type="text/css" href="css/Operator/public.css">
 
 	<style type="text/css">
 		.operator-header{
@@ -70,10 +70,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   	
   	<div class="operator-header">
   		<ul>
+  			<li><a>>运营商平台</a></li>
   			<li><a href="Operator/Manager/HomePage.jsp" id="homepage">个人中心</a></li>
 	    	<li><a href="Operator/Manager/CustomerManager.jsp" id="customer">顾客管理</a></li>
 	    	<li><a href="Operator/Manager/StoreManager.jsp" id="store">店铺管理</a></li>
-	    	<li><a href="#">举报处理</a></li>
+	    	<li><a href="Operator/OperatorReportCtrl?method=handleReport&currentPage=1" id="report">举报处理</a></li>
     	</ul>
   	</div>
     

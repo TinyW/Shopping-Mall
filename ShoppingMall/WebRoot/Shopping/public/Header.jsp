@@ -17,12 +17,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	
-
-	<link rel="stylesheet" type="text/css" href="css/public.css">
-
-
-
+	<link rel="stylesheet" type="text/css" href="css/Operator/public.css">
 	<style type="text/css">
 		.header .header-top
 		{
@@ -47,6 +42,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			display:inline-block;
 			padding:0 14px;
 			text-decoration:none;
+			cursor:pointer;
 		}
 		.header-top .left-ul li a:hover
 		{
@@ -68,6 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			display:inline-block;
 			padding:0 14px;
 			text-decoration:none;
+			cursor:pointer;
 		}
 		.header-top .right-ul li a:hover
 		{
@@ -98,6 +95,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		}
 	</style>
+
+		
+	</script>
   </head>
   
   <body>
@@ -109,6 +109,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			<c:choose>
 	  				<c:when test="${sessionScope.user!=null }">
 	  					<li><a>${sessionScope.user.username },欢迎进入</a></li>
+	  					<li><a href="LogoutCtrl?method=logout">退出登录</a></li>
 	  				</c:when>
 	  				<c:otherwise>
 	  					<li><a href="#">注册</a></li>
@@ -124,7 +125,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			<li><a href="${path }Operator/Manager/HomePage.jsp">运营商平台</a></li>
 	  		</ul>
   		</div>
-  	
   		<div class="header-search">
 	  		<form action="OperatorShopCtrl" method="get">
 	  			<input type="hidden" name="method" value="searchInfo">

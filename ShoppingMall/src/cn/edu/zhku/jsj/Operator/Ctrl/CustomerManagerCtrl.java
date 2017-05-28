@@ -23,7 +23,7 @@ import net.sf.json.JSONObject;
 
 
 
-@WebServlet(name="CustomerManagerCtrl",urlPatterns="/CustomerManagerCtrl")
+@WebServlet(name="CustomerManagerCtrl",urlPatterns="/Operator/CustomerManagerCtrl")
 @SuppressWarnings("serial")
 public class CustomerManagerCtrl extends HttpServlet {
 

@@ -17,7 +17,7 @@ import cn.edu.zhku.jsj.Operator.Service.PersonalService;
 import cn.edu.zhku.jsj.Util.DateUtil;
 import net.sf.json.JSONObject;
 
-@WebServlet(name="PersonalCenterCtrl",urlPatterns="/PersonalCenterCtrl")
+@WebServlet(name="PersonalCenterCtrl",urlPatterns="/Operator/PersonalCenterCtrl")
 public class PersonalCenterCtrl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -72,7 +72,6 @@ public class PersonalCenterCtrl extends HttpServlet {
 	//检查密码是否正确
 	public void verifyPsw(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String password=request.getParameter("password");
-		
 		PersonalService service=new PersonalService();
 		HttpSession session=request.getSession();
 		User user=(User) session.getAttribute("user");
@@ -90,6 +89,27 @@ public class PersonalCenterCtrl extends HttpServlet {
 		result(response,flag);
 		
 	}
+	public void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String username=request.getParameter("username");
+		String password=request.getParameter("password");
+		String nickname=request.getParameter("nickname");
+		String tel=request.getParameter("tel");
+		String sex=request.getParameter("sex");
+		String date=request.getParameter("birth");
+		java.sql.Date birth=DateUtil.getTime(date);
+		HttpSession session=request.getSession();
+		User user=(User)session.getAttribute("user");
+		user.setUsername(username);
+		user.setBirth(birth);
+		user.setNickname(nickname);
+		user.setPassword(password);
+		user.setTel(tel);
+		user.setSex(sex);
+		PersonalService service=new PersonalService();
+		boolean flag=service.update(user);
+		result(response,flag);
+	}
+	
 	public void result(HttpServletResponse response,Object result)throws ServletException, IOException 
 	{
 		JSONObject obj=new JSONObject();
@@ -99,4 +119,5 @@ public class PersonalCenterCtrl extends HttpServlet {
 		out.flush();
 		out.close();
 	}
+
 }

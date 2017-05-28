@@ -2,7 +2,7 @@
 	   function listInfo(){  
              $.ajax({  
                type:"post",//请求方式  
-               url:"CustomerManagerCtrl",//发送请求地址  
+               url:"Operator/CustomerManagerCtrl",//发送请求地址  
                timeout:30000,//超时时间：30秒  
                dataType:"json",//设置返回数据的格式  
                data:{
@@ -55,7 +55,7 @@
 			                	 var sex = obj[i].sex;
 			                	 var type=grant(obj[i].type);
 			                	 table.append('<tr><td>'+id+'</td><td>'+username+'</td><td>'+sex+'</td><td>'+type+'</td>'
-			               			+'<td><a href="CustomerManagerCtrl?method=get&id='+id+'"'+'>查看</a>'
+			               			+'<td><a href="Operator/CustomerManagerCtrl?method=get&id='+id+'"'+'>查看</a>'
 			               			+'<a class="del">删除</a></td></tr>');	
 			               		 
 		           		 	}
@@ -107,11 +107,12 @@
 	    				$(".del").mousedown(function(){
 							var flag=confirm("是否确认删除");
 							var attr=$(this).parent().parent();
+							var id=$(this).parent().parent().children(":first").html();
 							if(flag)
 							{
 								$.ajax({
 									type:"get",
-									url:"CustomerManagerCtrl?method=delete&id="+id,
+									url:"Operator/CustomerManagerCtrl?method=delete&id="+id,
 									dataType:"json",
 									success:function(data)
 									{
