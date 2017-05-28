@@ -2,6 +2,7 @@ package cn.edu.zhku.jsj.Filter;
 
 import java.io.IOException;
 
+
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -14,23 +15,23 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import cn.edu.zhku.jsj.Model.User;
+/*
+ * 运营商权限控制
+ */
 @WebFilter(filterName="OperatorFilter",urlPatterns="/Operator/*")
 public class OperatorFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		System.out.println("权限过滤");
 		HttpServletRequest req=(HttpServletRequest)request;
 		HttpServletResponse resp=(HttpServletResponse)response;
 		HttpSession session=req.getSession();
-		System.out.println("operatorfilter");
 		if(null!=session.getAttribute("user"))
 		{
 			User user=(User)session.getAttribute("user");
@@ -53,7 +54,6 @@ public class OperatorFilter implements Filter {
 
 	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
-		// TODO Auto-generated method stub
 
 	}
 

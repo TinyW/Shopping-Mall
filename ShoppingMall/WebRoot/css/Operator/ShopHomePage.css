@@ -96,4 +96,11 @@
 		{
 			text-decoration:underline;
 		}
-		
+		.content .pic1
+		{
+			float:right;
+		}
+		.content .pic2
+		{
+			padding-left:10px;
+		}

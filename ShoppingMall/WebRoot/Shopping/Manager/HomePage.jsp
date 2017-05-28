@@ -24,12 +24,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		$(function(){
 			$(".hide-content").hide();
 			$(".first-content").mouseover(function(){
+				$(".content .right-content").hide();
+				$(".content .pic2").hide();
 				$(".left-content ul li.first-content").css({"border":"2px solid #FF3276","border-right":"none"});
 				$(".hide-content.first-content").css({"border":"2px solid #FF3276"});
 				$(".left-content ul li:gt(1) ul").css({"borderRight":"2px solid #FF3276"});
 				$(".hide-content").show();
 			})
 			$(".first-content").mouseout(function(){
+				$(".content .right-content").show();
+				$(".content .pic2").show();
 				$(".left-content ul li.first-content").css({"border":"none"});
 					$(".left-content ul li:gt(1) ul").css({"borderRight":"2px solid #F5F5F5"});
 					$(".hide-content").hide();
@@ -247,7 +251,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</li>
 			</ul>
 	    </div>
+	    	<img alt="" src="images/pic3.png" class="pic1">
+	    	
+    		<img alt="" src="images/pic1.jpg" class="pic2">
+    		<img alt="" src="images/pic4.png" class="pic3">
+    		<img alt="" src="images/pic2.jpg" class="pic2">
+    		<img alt="" src="images/pic4.png" class="pic3">
+
+    		
     </div>
-    
+	
   </body>
 </html>
